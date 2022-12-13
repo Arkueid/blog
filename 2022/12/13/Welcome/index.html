@@ -282,23 +282,43 @@
 		
 	</div>
 	
-	<div class="kira-post-footer">
-	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
-	<div id="gitalk"></div>
-	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-	<script type="text/javascript">
-		var gitalk = new Gitalk({
-			clientID: '5d79d18da2c750fa3443',
-			clientSecret: 'fd2d35243dd2590d9ef7f0c2c422e8966a9331f6',
-			id: 'Welcome!',
-			repo: 'blog',
-			owner: 'Arkueid',
-			admin: 'Arkueid',
-			title: '',
-		});
-		gitalk.render('gitalk');
-	</script>
+	<div class="kira-post-footer"><!--  -->
 
+
+<!-- valine -->
+<div id="vcomments"></div>
+  <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+  <script>
+      new Valine({
+          el: '#vcomments',
+		  enableQQ: true,
+          appId: 'xZKV7RT9m5oaLdk3qrgHheB1-gzGzoHsz',
+          appKey: 'LH16iBMFzQ5mAYhEzI8qzjKu',
+          path: window.location.pathname,
+          notify: false,
+          verify: false,
+          avatar: 'monsterid',//小怪物头像
+          placeholder: "你是我一生只会遇见一次的惊喜 ..."  
+    });
+    document.body.addEventListener('click', function(e) {
+      if (e.target.classList.contains('vsubmit')) {
+          const email = document.querySelector('input[type=email]');
+          const nick = document.querySelector('input[name=nick]');
+          const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+          if (!email.value || !nick.value || !reg.test(email.value)) {
+              const str = `<div class="valert txt-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+              const vmark = document.querySelector('.vmark');
+              vmark.innerHTML = str;
+              vmark.style.display = 'block';
+  
+              setTimeout(function() {
+                  vmark.style.display = 'none';
+                  vmark.innerHTML = '';
+              }, 2500);
+          }
+        }
+      });
+  </script>
 </div>
 	
 </div>
