@@ -1,3 +1,10 @@
 #vcomments {
-  background-image: url("/blog/ph_nijika_2.png");
+  background-color: #fff;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  padding: 20px;
+  border-radius: 10px;
 }
