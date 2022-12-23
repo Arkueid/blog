@@ -645,6 +645,7 @@ font.douyin {
 }
 article > pre > code {
   color: #f0ffff;
+  overflow: visible;
 }
 article > pre {
   padding: 10px;
