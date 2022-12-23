@@ -8,3 +8,8 @@
   padding: 20px;
   border-radius: 10px;
 }
+.v[data-class=v] .vbtn {
+  border-color: #146fd7;
+  color: #fff;
+  background-color: #146fd7;
+}

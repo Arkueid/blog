@@ -308,6 +308,21 @@ article h2:before {
   left: -25px;
   box-sizing: unset;
 }
+article > h1 > .headerlink {
+  display: none;
+}
+article > h2 > .headerlink {
+  display: none;
+}
+article > h3 > .headerlink {
+  display: none;
+}
+article > h4 > .headerlink {
+  display: none;
+}
+article > h4:before {
+  display: none;
+}
 article h2:after {
   transition: all 0.35s ease-out;
   content: '';
@@ -628,15 +643,22 @@ font.douyin {
   width: 100%;
   z-index: -1;
 }
+article > pre > code {
+  color: #f0ffff;
+}
+article > pre {
+  padding: 10px;
+  background-color: #000;
+}
 article > p > code {
   display: inline;
   border-radius: 4px;
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace, Roboto, RobotoNum, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Segoe UI';
-  padding: 0 4px;
+  padding: 4px;
   margin: 1px 3px;
   line-height: 1.1;
   word-break: break-all;
-  color: #31aeff;
+  color: #fff;
   background-color: rgba(49,174,255,0.15);
 }
 article div.my-aplayer-container {
