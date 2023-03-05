@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/blog/css/layout.css">
 
 		
-		<title> Bilibili视频命令行爬虫 -  MyBlog</title>
+		<title> Live2DMascotObbjectOrientedPlan -  MyBlog</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -272,90 +272,28 @@
 		
 		<div class="kira-post-cover">
 			<img
-				data-src="/blog/bcmdc.png"
+				data-src="/blog/vladilena_working_hard.jpg"
 				data-sizes="auto"
-				alt="Bilibili视频命令行爬虫"
+				alt="Live2DMascotObbjectOrientedPlan"
 				class="lazyload  kira-post-cover-image"
 			/>
-			<h1>Bilibili视频命令行爬虫</h1>
+			<h1>Live2DMascotObbjectOrientedPlan</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2022年12月23日</a>
-			<a><i class="kirafont icon-areachart"></i>415 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2023年03月05日</a>
+			<a><i class="kirafont icon-areachart"></i>157 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<h1 id="Bilibili视频爬虫"><a href="#Bilibili视频爬虫" class="headerlink" title="Bilibili视频爬虫"></a>Bilibili视频爬虫</h1><hr>
-<h2 id="使用环境"><a href="#使用环境" class="headerlink" title="使用环境"></a>使用环境</h2><ul>
-<li>lxml (Python 3)</li>
-<li>requests (Python 3)</li>
-<li>ffmpeg (官网下载并添加到PATH)</li>
-</ul>
-<hr>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><pre><code>usage: bili.py [-h] [-ls] [-v] [-f] [-a] [-c] [-p PART] bv
-
-Bilibili命令行爬虫
-
-positional arguments:
-  bv                    视频bv号
-
-options:
-  -h, --help            show this help message and exit
-  -ls, --list           从列表中选择
-  -v, --video           下载视频选项，后方无需添加额外参数
-  -f, --frames          下载无音频的画面选项，后方无需添加额外参数
-  -a, --audio           下载音频选项，后方无需添加额外参数
-  -c, --cover           下载封面选项，后方无需添加额外参数
-  -p PART, --part PART  分P视频集数
-</code></pre>
-<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><h4 id="1-通过BV号直接下载视频"><a href="#1-通过BV号直接下载视频" class="headerlink" title="1. 通过BV号直接下载视频:"></a>1. 通过BV号直接下载视频:</h4><pre><code>$&gt; python bili.py BV1u841157Us -v 
-</code></pre>
-<p>或</p>
-<pre><code>$&gt; python bili.py BV1u841157Us --video
-</code></pre>
-<h4 id="2-通过BV号直接下载视频的音轨"><a href="#2-通过BV号直接下载视频的音轨" class="headerlink" title="2. 通过BV号直接下载视频的音轨:"></a>2. 通过BV号直接下载视频的音轨:</h4><pre><code>$&gt; python bili.py BV1u841157Us -a
-</code></pre>
-<p>或</p>
-<pre><code>$&gt; python bili.py BV1u841157Us --audio
-</code></pre>
-<h4 id="3-通过BV号直接下载视频封面"><a href="#3-通过BV号直接下载视频封面" class="headerlink" title="3. 通过BV号直接下载视频封面"></a>3. 通过BV号直接下载视频封面</h4><pre><code>$&gt; python bili.py BV1u841157Us -c
-</code></pre>
-<p>或</p>
-<pre><code>$&gt; python bili.py BV1u841157Us --cover
-</code></pre>
-<h4 id="4-通过BV号直接下载视频画面（不含音轨）"><a href="#4-通过BV号直接下载视频画面（不含音轨）" class="headerlink" title="4. 通过BV号直接下载视频画面（不含音轨）"></a>4. 通过BV号直接下载视频画面（不含音轨）</h4><pre><code>$&gt; python bili.py BV1u841157Us -f
-</code></pre>
-<p>或</p>
-<pre><code>$&gt; python bili.py BV1u841157Us --frames
-</code></pre>
-<h4 id="5-同时下载画面，音轨，视频，和封面"><a href="#5-同时下载画面，音轨，视频，和封面" class="headerlink" title="5. 同时下载画面，音轨，视频，和封面"></a>5. 同时下载画面，音轨，视频，和封面</h4><pre><code>$&gt; python bili.py BV1u841157Us -a -f -v -c
-</code></pre>
-<p>选项参数可随意组合</p>
-<h4 id="6-从合集中选择下载视频"><a href="#6-从合集中选择下载视频" class="headerlink" title="6. 从合集中选择下载视频"></a>6. 从合集中选择下载视频</h4><p>从合集中下载视频封面</p>
-<pre><code>$&gt; python bili.py BV1u841157Us -ls -c
-名称:  XXXXXX
-类型: 分P视频
-up主: XXX
- 1 XXXXXXXX
- 2 XXXXXXXX
- 3 XXXXXXXX
-请选择视频: 
-</code></pre>
-<p>如果为分P视频，即使没有-ls参数也会自动进入视频集合选择</p>
-<hr>
-<h2 id="Cookie的使用"><a href="#Cookie的使用" class="headerlink" title="Cookie的使用"></a>Cookie的使用</h2><ul>
-<li>Bilibili\下的cookie文件可以存放自己账号的cookie  </li>
-<li>设置cookie后，可选择的最大视频码率会提高  </li>
-<li>支持大会员cookie  </li>
-<li>cookie获取方法请自行百度</li>
-</ul>
+		<p>最近Live2D SDK for Native 由 R5 更新到了R6，所以想把最近的桌宠项目也更新到R6.  </p>
+<p>但是，更换sdk之前的代码需要重写一遍，十分麻烦，于是想到了面向对象的思路，创建自己应用层的类，继承sdk的类，把自己实现的函数和sdk的类分离，这样以后更新sdk只需要考虑复制粘贴就行了。基于这个想法，<del>我突然领悟到类的继承的<strong>精髓</strong></del>。总之就是把学到的知识应用到具体实例中才能更好的理解吧，嗯，就这些。</p>
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Arkueid<br>
-        <strong>本文链接：</strong><a href="http://arcueid.github.io/blog/BilibiliCommandLineCrawler-README/" title="http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;BilibiliCommandLineCrawler-README&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;BilibiliCommandLineCrawler-README&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="http://arcueid.github.io/blog/Live2DMascotObbjectOrientedPlan/" title="http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;Live2DMascotObbjectOrientedPlan&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;Live2DMascotObbjectOrientedPlan&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -366,15 +304,15 @@ up主: XXX
 		<nav class="post-nav">
 			  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			         
 			<!-- 在找到当前文章所在的 index -->
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
+			        
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
 				<a href="/blog/Live2DMascotReadme/"> Live2DMascot - Live2D桌宠</a>
 			</div>
-			                 
+			          
 		</nav>
 	</div>
 	
@@ -383,7 +321,7 @@ up主: XXX
 			<a class="kirafont icon-appstore-fill -link" href="/blog/categories/programming/">programming</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/blog/tags/Python/" rel="tag">Python</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/blog/tags/c/" rel="tag">c++</a>
 		
 	</div>
 	
