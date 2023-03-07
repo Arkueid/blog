@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/blog/css/layout.css">
 
 		
-		<title> 我的朋友 -  MyBlog</title>
+		<title> 处理包含中文的路径 -  MyBlog</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -99,7 +99,7 @@
 		</a>
 		
 		<a
-			class="kira-list-item mdui-ripple true"
+			class="kira-list-item mdui-ripple false"
 			href="/blog/friends"
 			title="我的朋友"
 		>
@@ -224,13 +224,110 @@
 			<div class="kira-content">
 				<div id="kira-top-header"></div>
 				<div class="kira-main-content">
-					<div class="kira-post">
-	<article class="kira-friend">
+					
+<link rel="stylesheet" href="/blog/css/kira-image.css">
+
+<script src="/blog//js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
 		
+		<div class="kira-post-cover">
+			<img
+				data-src="/blog/chinesepatherror.webp"
+				data-sizes="auto"
+				alt="处理包含中文的路径"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>处理包含中文的路径</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2023年03月07日</a>
+			<a><i class="kirafont icon-areachart"></i>211 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+		</div>
+		<p>如何处理中文路径？  </p>
+<p>关键在于保证系统默认使用的编码和输入的路径编码相同。 </p>
+<p>如果中文路径嵌在代码中，假如代码的编码是utf-8。在调用如c++的ofstream时，实际上是将传入的路径参数以系统默认的编码打开，一般中文系统的编码是gbk，也就是说，ofstream(path)传入的path参数在中文系统下是默认是gbk的编码方式，而一般的IDE或者编辑器默认编码是utf-8，这就导致了编码不统一，产生了中文乱码。  </p>
+<p>事实上，绝大部分的中文乱码，其根本原因是文本保存的编码和读取时的编码不一致，utf-8的编码需要以utf-8编码读取，用gbk就会导致乱码。</p>
+
 	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Arkueid<br>
+        <strong>本文链接：</strong><a href="http://arcueid.github.io/blog/HandlePathIncludeChinese/" title="http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;HandlePathIncludeChinese&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;arcueid.github.io&#x2F;blog&#x2F;HandlePathIncludeChinese&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			  
+			<!-- 先找到与当前文字相同的目录 -->
+			            
+			<!-- 在找到当前文章所在的 index -->
+			            
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/blog/Live2DMascotObbjectOrientedPlan/"> Live2DMascotObbjectOrientedPlan</a>
+			</div>
+			          
+		</nav>
+	</div>
 	
-        <div class="kira-post-footer">
-            <!--  -->
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/blog/categories/programming/">programming</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/blog/tags/solutions/" rel="tag">solutions</a>
+		
+	</div>
+	
+	<div class="kira-post-footer"><!--  -->
 
 
 <!-- valine -->
@@ -268,9 +365,8 @@
         }
       });
   </script>
-
-        </div>
-    
+</div>
+	
 </div>
 
 				</div>
