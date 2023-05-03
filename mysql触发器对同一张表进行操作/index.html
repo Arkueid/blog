@@ -174,7 +174,7 @@
             
             <span class="tag">
                 
-                <a href="/blog/tags/mysql/" style="color: #00bcd4">mysql</a>
+                <a href="/blog/tags/mysql/" style="color: #ffa2c4">mysql</a>
             </span>
             
         </span>
@@ -184,46 +184,28 @@
     <div class="content" v-pre>
         <p>触发器初始结构：</p>
 <pre><code class="sql">DELIMITER $$
-
 CREATE
-
 TRIGGER `数据库名`.`触发器名` BEFORE/AFTER INSERT/UPDATE/DELETE
-
 ON `数据库名`.`表名`
-
 FOR EACH ROW BEGIN
-
 -- 逻辑、条件语句
-
 END$$
-
 DELIMITER ;
 </code></pre>
 <p>目的：当一张表中的某个字段值更新为特定值时，触发更新本条数据的另一字段值</p>
 <p>( 示例:根据 prj_base_info 表中的 project_status 的值判断是否是600时，触发更新同表的 complete_time 字段的时间为系统当前时间 )</p>
 <p>开始写出的触发器如下所示</p>
 <pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
-
 DELIMITER $
-
 CREATE TRIGGER update_complete_time AFTER UPDATE
-
 ON prj_base_info FOR EACH ROW
-
 BEGIN
-
 IF (new.project_status=600)
-
 THEN
-
 UPDATE prj_base_info
-
 SET complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
-
 WHERE prj_base_info.id = new.id;
-
 END IF;
-
 END $
 </code></pre>
 <p>执行结果没有问题，创建触发器成功，但是执行 update 语句进行测试如下报错，提示：无法更新存储函数&#x2F;触发器中的表 ‘prj_base_info’，因为它已经被调用此存储函数&#x2F;触发器的语句使用。</p>
@@ -236,25 +218,14 @@ END $
 <p>通过查阅资料了解，同表的更新不能在触发器里使用 update,而是直接使用set</p>
 <p>修改为：</p>
 <pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
-
 DELIMITER $
-
 CREATE TRIGGER update_complete_time AFTER UPDATE
-
 ON prj_base_info FOR EACH ROW
-
 BEGIN
-
 IF (new.project_status=600)
-
 THEN
-
-SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
-
-;
-
+SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;);
 END IF;
-
 END $
 </code></pre>
 <p>结果发现还报错。。。</p>
@@ -263,25 +234,14 @@ END $
 </code></pre>
 <p>把 AFTER 修改为BEFORE即可：</p>
 <pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
-
 DELIMITER $
-
 CREATE TRIGGER update_complete_time BEFORE UPDATE
-
 ON prj_base_info FOR EACH ROW
-
 BEGIN
-
 IF (new.project_status=600)
-
 THEN
-
-SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
-
-;
-
+SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;);
 END IF;
-
 END $
 </code></pre>
 <p>BEFORE 与 AFTER 区别：</p>
