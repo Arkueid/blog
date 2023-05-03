@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>Categories | ♥エリスの一番星★</title>
+        <title>Mysql触发器对同一张表进行操作 | ♥エリスの一番星★</title>
         <meta name="author" content="Arkueid" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -27,6 +27,10 @@
 
 
 <script src="/blog/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,13 +145,20 @@
 
             <transition name="into">
                 <div id="main" v-show="!loading">
-                    <div id="archives">
-    
-    <div class="categories-tags">
+                    <div class="article">
+    <div>
+        <h1>Mysql触发器对同一张表进行操作</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
         
-        
-        <span>
-            <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="background: #ff7d73">
+        <span class="category">
+            <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -156,20 +167,144 @@
         </span>
         
         
-        
-        <span>
-            <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%BD%AC%E8%BD%BD/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                转载
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/blog/tags/mysql/" style="color: #00bcd4">mysql</a>
+            </span>
+            
         </span>
-        
         
     </div>
     
+    <div class="content" v-pre>
+        <p>触发器初始结构：</p>
+<pre><code class="sql">DELIMITER $$
+
+CREATE
+
+TRIGGER `数据库名`.`触发器名` BEFORE/AFTER INSERT/UPDATE/DELETE
+
+ON `数据库名`.`表名`
+
+FOR EACH ROW BEGIN
+
+-- 逻辑、条件语句
+
+END$$
+
+DELIMITER ;
+</code></pre>
+<p>目的：当一张表中的某个字段值更新为特定值时，触发更新本条数据的另一字段值</p>
+<p>( 示例:根据 prj_base_info 表中的 project_status 的值判断是否是600时，触发更新同表的 complete_time 字段的时间为系统当前时间 )</p>
+<p>开始写出的触发器如下所示</p>
+<pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
+
+DELIMITER $
+
+CREATE TRIGGER update_complete_time AFTER UPDATE
+
+ON prj_base_info FOR EACH ROW
+
+BEGIN
+
+IF (new.project_status=600)
+
+THEN
+
+UPDATE prj_base_info
+
+SET complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
+
+WHERE prj_base_info.id = new.id;
+
+END IF;
+
+END $
+</code></pre>
+<p>执行结果没有问题，创建触发器成功，但是执行 update 语句进行测试如下报错，提示：无法更新存储函数&#x2F;触发器中的表 ‘prj_base_info’，因为它已经被调用此存储函数&#x2F;触发器的语句使用。</p>
+<pre><code class="cmd">1 queries executed, 0 success, 1 errors, 0 warnings
+</code></pre>
+<p>查询：update prj_base_info set type&#x3D;2,project_status&#x3D;600 where id&#x3D;’1537842899333’</p>
+<p>错误代码： 1442</p>
+<pre><code class="cmd">Can&#39;t update table &#39;prj_base_info&#39; in stored function/trigger because it is already used by statement which invoked this stored function/trigger.
+</code></pre>
+<p>通过查阅资料了解，同表的更新不能在触发器里使用 update,而是直接使用set</p>
+<p>修改为：</p>
+<pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
+
+DELIMITER $
+
+CREATE TRIGGER update_complete_time AFTER UPDATE
+
+ON prj_base_info FOR EACH ROW
+
+BEGIN
+
+IF (new.project_status=600)
+
+THEN
+
+SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
+
+;
+
+END IF;
+
+END $
+</code></pre>
+<p>结果发现还报错。。。</p>
+<p>错误代码： 1362</p>
+<pre><code class="cmd">Updating of NEW row is not allowed in after trigger
+</code></pre>
+<p>把 AFTER 修改为BEFORE即可：</p>
+<pre><code class="sql">DROP TRIGGER IF EXISTS update_complete_time;
+
+DELIMITER $
+
+CREATE TRIGGER update_complete_time BEFORE UPDATE
+
+ON prj_base_info FOR EACH ROW
+
+BEGIN
+
+IF (new.project_status=600)
+
+THEN
+
+SET new.complete_time =DATE_FORMAT(NOW(), &#39;%Y-%m-%d&#39;)
+
+;
+
+END IF;
+
+END $
+</code></pre>
+<p>BEFORE 与 AFTER 区别：</p>
+<p>BEFORE：( insert、update )可以对 new 进行修改，AFTER 不能对 new 进行修改，两者都不能修改 old 数据。</p>
+<p>对于 INSERT 语句, 只有 NEW 是合法的；</p>
+<p>对于 DELETE 语句，只有 OLD 才合法；</p>
+<p>对于 UPDATE 语句，NEW、OLD 可以同时使用。</p>
+<p>总结：BEFORE 或 AFTER 关键字决定何时执行触发器动作，决定是在关联行的插入、修改或删除之前或者之后执行触发器动作。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <hr />
+    <div id="vcomments" style="margin: 20px; font-size: large;"></div>
 </div>
+  
+
+
 
                     <footer id="footer">
     <div id="footer-wrap">
@@ -200,6 +335,31 @@
             
         </div>
         <script src="/blog/js/main.js"></script>
+        
+        
+
+
+
+
+
+<div style="margin: 20px 25% 20px 25%; width: 50%;">
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'xZKV7RT9m5oaLdk3qrgHheB1-gzGzoHsz',
+        appKey: 'LH16iBMFzQ5mAYhEzI8qzjKu',
+        enableQQ: true,
+        path: window.location.pathname,
+        notify: true,
+        verify: false,
+        avatar: 'monsterid',//小怪物头像
+        placeholder: "昵称输入QQ号可以获取头像哦~网址可以填你的个人主页~" 
+    })
+</script>
+</div>
+
+
         
     </body>
 </html>
