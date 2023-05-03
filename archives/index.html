@@ -30,6 +30,8 @@
 
 
 
+<script src="/blog/js/lib/search.js"></script>
+
 
 
 <link rel="stylesheet" href="/blog/css/main.css" />
@@ -144,6 +146,8 @@
                     
 <div id="archives">
     
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
+    
     <div id="timeline-wrap" ref="timeline">
         
         <div class="timeline" data-title="welcome!">
@@ -186,7 +190,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/blog/tags/mysql/" style="color: #ff7d73">mysql</a>
+                            <a href="/blog/tags/mysql/" style="color: #ffa2c4">mysql</a>
                         </span>
                         
                     </span>
