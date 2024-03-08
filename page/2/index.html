@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/blog/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/blog/images/background5.png"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>どんな不自由でも、幸せを掴める</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/blog/%E3%81%A8%E3%81%93%E3%82%8D/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <ol>
+<li>表示某一点、某一方面</li>
+<li>表示范围</li>
+<li>表示程度</li>
+<li>表理应、应当</li>
+<li>表示某种被动的结果，一般以“ところなる”的形式</li>
+<li>表示某一时刻、场合<ul>
+<li>基本形+ところだ，表示动作进行之前<ul>
+<li>これから出かけるところだ</li>
+</ul>
+</li>
+<li>た形+ところだ，表示刚刚做完某个动作<ul>
+<li>今、帰ってきたところだ</li>
+</ul>
+</li>
+<li>~ている+ところだ，表示正在进行某个动作<ul>
+<li>レポートを書いているところだ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%A8%E3%81%93%E3%82%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%A9%E3%81%93%E3%80%81%E3%81%A0%E3%82%8C/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>だれ $\rightarrow$ どなた</p>
+<p>どこ $\rightarrow$ [[どちら]]</p>
+<p>どれ $\rightarrow$ [[どちら]]</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%A9%E3%81%93%E3%80%81%E3%81%A0%E3%82%8C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%A9%E3%81%A1%E3%82%89/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><strong>哪边，哪面，哪儿。（どこ）</strong></p>
+<blockquote>
+<p>どちらへいきましたか。去哪里了呢？</p>
+</blockquote>
+<p><strong>哪个。（两者中的哪一个）</strong></p>
+<blockquote>
+<p>肉と魚とどちらがお好きですか。肉和鱼您喜欢吃哪一个？</p>
+</blockquote>
+<p><strong>谁。（どなた）</strong></p>
+<blockquote>
+<p>どちらさまでしょうか。您是哪位呀？</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%A9%E3%81%A1%E3%82%89/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E4%BC%BC%E5%90%88%E3%81%84%E3%81%BE%E3%81%99/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>名[人]<strong>は</strong>　名[物]<strong>が</strong>　<strong>似合います</strong></p>
+<p>名[物]<strong>は</strong>　名[人]<strong>に</strong>　<strong>似合います</strong></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E4%BC%BC%E5%90%88%E3%81%84%E3%81%BE%E3%81%99/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E8%A1%A8%E5%8F%98%E5%8C%96/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="一类形容词"><a href="#一类形容词" class="headerlink" title="一类形容词"></a>一类形容词</h5><h6 id="一类形-なります"><a href="#一类形-なります" class="headerlink" title="一类形　なります"></a>一类形　なります</h6><blockquote>
+<p>把一类形容词的词尾“い”改成“く”，再加“なります”<br>だんだん　寒くなります。<br>携帯電話は　小さくなりました。<br>パソコンは　安くなりました。</p>
+</blockquote>
+<h6 id="一类形-します"><a href="#一类形-します" class="headerlink" title="一类形　します"></a>一类形　します</h6><blockquote>
+<p>表示因为主语的意志、作用而引起的变化的场合。<br>ジュースを　冷たく　します。<br>テレビの音を　大きく　します。</p>
+</blockquote>
+<h5 id="二类形容词-x2F-名词"><a href="#二类形容词-x2F-名词" class="headerlink" title="二类形容词&#x2F;名词"></a>二类形容词&#x2F;名词</h5><h6 id="二类形容词-x2F-名词-に-なります"><a href="#二类形容词-x2F-名词-に-なります" class="headerlink" title="二类形容词 &#x2F; 名词　に　なります"></a>二类形容词 &#x2F; 名词　に　なります</h6><h6 id="二类形容词-x2F-名词-に-します"><a href="#二类形容词-x2F-名词-に-します" class="headerlink" title="二类形容词 &#x2F; 名词　に　します"></a>二类形容词 &#x2F; 名词　に　します</h6><blockquote>
+<p>例：<br>会議室は　禁煙にします。<br>部屋を　きれいに　して　ください。<br>餐厅中回答服务员的点餐询问时，可以使用”～に　します。”<br>例如：<br>我要咖啡。コーヒーにします。</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E8%A1%A8%E5%8F%98%E5%8C%96/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%82%88%E3%81%AD/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>[[よ]]　&#x2F;　[[ね]]<br>よね</p>
+<blockquote>
+<p>表示提出自己的意见，以征求对方的同意。<br>当说话人确信对方和自己的意见、想法完全相同时，只用“ね”，而说话人对自己的意见，想法没有足够的把握时，使用“よね”。</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%82%88%E3%81%AD/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%AF%E2%80%A6%E3%81%8C%E2%80%A6/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>主题　は　主语　が　…</p>
+<p>围绕主题的某个内容（主语）性质怎么这么样</p>
+<p>例如：翻译“京都的红叶很有名。” 　$\rightarrow$ 　東京は紅葉が有名です。</p>
+<p>相关：<br>[[は]]<br>[[が]]</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%AF%E2%80%A6%E3%81%8C%E2%80%A6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%BB%E3%81%86%E3%81%8C%E3%81%84%E3%81%84/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>形容词 + ほうがいいです<br>还是……比较好</p>
+<ol>
+<li>一类 + ほうがいいです</li>
+<li>二类 + な + ほうがいいです</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%BB%E3%81%86%E3%81%8C%E3%81%84%E3%81%84/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%AD/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>当说话人就某事征求听话人的同意时，句尾使用，读升调。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%AD/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%82%88/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>用于提醒对方注意其不知道、不了解的事情，读升调。根据使用的场景不同分别表示告知、提醒、轻微的警告等。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%82%88/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+        <a class="page-num" href="/blog/">
+            <i class="fa-solid fa-caret-left fa-fw"></i>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            <a class="page-num" href="/blog/">1</a>
+        </span>
+        
+        <span class="current">2</span>
+        
+        <span>
+            <a class="page-num" href="/blog/page/3/">3</a>
+            
+            <a class="page-num" href="/blog/page/4">4</a>
+            
+            
+            <span class="page-omit">...</span>
+            <a class="page-num" href="/blog/page/5">5</a>
+            
+        </span>
+        
+    </div>
+    <div class="next">
+        
+        <a class="page-num" href="/blog/page/3/">
+            <i class="fa-solid fa-caret-right fa-fw"></i>
+        </a>
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>中二</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Arkueid">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/31373462">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:thetardis@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+    </body>
+</html>

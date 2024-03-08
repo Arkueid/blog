@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/blog/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/blog/images/background5.png"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>どんな不自由でも、幸せを掴める</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/blog/%E3%81%B8/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%B8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%82%92/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><p><strong>[地点]&#x2F;[场所] を 动[经过&#x2F;离开]</strong></p>
+<blockquote>
+<p>表示经过或离开某个地点、场所</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%82%92/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%8B/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="名詞か-名詞"><a href="#名詞か-名詞" class="headerlink" title="名詞か　名詞"></a>名詞か　名詞</h5><p>对若干名词进行选择时，名词和名词之间加“か”、相当于中文中的“或者”</p>
+<p>我今晚要么看动漫要么看电视剧。<br>わたしは　今晩　アニメか　ドラマを　見ます。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%8B/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%8C/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><strong>A　が　B　です</strong></p>
+<blockquote>
+<p>新しいが古いです，新提到的事物 が 之前提到过的事物。<br>例：<br>　- 吉田課長はいますか。<br>　- 私が吉田ですが…。（等同于“吉田は私です。”）</p>
+</blockquote>
+<p><strong>名词　が　名词</strong></p>
+<blockquote>
+<p>叙述<font color="red">直接观察到的某物</font>，而不是作为话题在谈论这个事物时，使用该形式。因为这里也同样是新信息在做主语。<br>例：<br>子供が　公園で　遊んで　います。<br>バスが　きました。（バスは　まだ　来ませんか。）</p>
+</blockquote>
+<p><strong>疑问词（主语）　が　…</strong></p>
+<blockquote>
+<p>疑问词（何、どこ、だれ、いつ）等表示<font color="red">疑问的词</font>做主语时不能用“は”，只能用“が”。因为这些词不能表示旧信息。<br>例：<br>誰が　いますか。<br>どこが　痛いですか。<br>なにが　好きですか。 </p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%8C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%A7/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="名「場所」で-動詞"><a href="#名「場所」で-動詞" class="headerlink" title="名「場所」で　動詞"></a>名「場所」で　動詞</h5><p>在<font color="red">某地做某事</font><br>日语中存在场所用に、动作进行的场所用で</p>
+<p>昨天我和小王在图书馆看了书。<br>昨日、私は王さんと図書館で本を読みました。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%A7/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%AB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><p><strong>表示人或物的附着点，在交通工具或椅子等物体上</strong></p>
+<p><strong>表示动作&#x2F;行为的目的地</strong></p>
+<p><strong>在时间点做某事</strong></p>
+<p><strong>表示动作对象</strong></p>
+<p><strong>表存在的场所</strong></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%AB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%AF/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%AF/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E6%90%AD%E9%85%8D/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>#动宾搭配</p>
+<p>宿題を書きます<br>お粥をたべます<br>ごみを出します<br>手紙を出します<br>手紙を書きます<br>ファックスを送ります<br>メールを出します<br>資料を作ります<br>お金を払います<br>電話をかけます<br>写真を撮ります<br>シャワーを浴びます<br>体を浴びます<br>頭を浴びます<br>電気を消します<br>窓を閉めます<br>服を脱ぎます<br>靴を脱ぎます</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E6%90%AD%E9%85%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E8%87%AA%E5%8A%A8%E8%AF%8Dvs%E4%BB%96%E5%8A%A8%E8%AF%8D/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>自动词：不带宾语的动词，表示不在外力的影响下自主地进行动作，或自然的发生变化<br>他动词：因为主语作用于宾语而发生的变化。(使役)</p>
+<blockquote>
+<p>例：<br>窓が開きました。<br>窓を開けました。<br>タイムサービスが　始まりました。<br>タイムサービスを　始めました。</p>
+</blockquote>
+<p>与英语及物动词和不及物动词有区别。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E8%87%AA%E5%8A%A8%E8%AF%8Dvs%E4%BB%96%E5%8A%A8%E8%AF%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E4%B8%89%E5%88%86%E7%B1%BB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <blockquote>
+<p><strong>所有动词原形都是う段结尾</strong></p>
+</blockquote>
+<p>#动词分类</p>
+<h4 id="原形判断"><a href="#原形判断" class="headerlink" title="原形判断"></a>原形判断</h4><ol>
+<li><strong>一类动词 (五段动词)</strong><br> a. 结尾是う段非る的动词一定是五段动词<br> b. 结尾是”あ段+る”、”う段+る”、”お段+る”<br> c. 特例：<ruby>切<rt style="font-size: 10pt">き</rt></ruby>る、<ruby>帰<rt style="font-size: 10pt">かえ</rt></ruby>る、<ruby>走<rt style="font-size: 10pt">はし</rt>る</ruby></li>
+<li><strong>二类动词 (上一段动词、下一段动词)</strong><br> い段+る (上一段)、え段+る (下一段)</li>
+<li><strong>三类动词</strong><br> くる、する</li>
+</ol>
+<h4 id="ます形判断"><a href="#ます形判断" class="headerlink" title="ます形判断"></a>ます形判断</h4><p>去掉ます后为い段，绝大部分是一类动词，初日阶段只需要记住います、起きます、着ます、見ます、できます、過ぎます这6个词是二类动词。<br>以します结尾的一般为三类动词，此外，来ます也是三类动词。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E4%B8%89%E5%88%86%E7%B1%BB/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+        <a class="page-num" href="/blog/page/2/">
+            <i class="fa-solid fa-caret-left fa-fw"></i>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            
+            
+            <a class="page-num" href="/blog/">1</a>
+            
+            
+            
+            <a class="page-num" href="/blog/page/2/">2</a>
+        </span>
+        
+        <span class="current">3</span>
+        
+        <span>
+            <a class="page-num" href="/blog/page/4/">4</a>
+            
+            <a class="page-num" href="/blog/page/5">5</a>
+            
+            
+        </span>
+        
+    </div>
+    <div class="next">
+        
+        <a class="page-num" href="/blog/page/4/">
+            <i class="fa-solid fa-caret-right fa-fw"></i>
+        </a>
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>中二</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Arkueid">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/31373462">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:thetardis@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+    </body>
+</html>

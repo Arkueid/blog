@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/blog/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/blog/images/background5.png"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>どんな不自由でも、幸せを掴める</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/blog/%E5%89%AF%E5%8A%A9%E8%AF%8D/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="は"><a href="#は" class="headerlink" title="は"></a>は</h5><ul>
+<li>提示主题</li>
+<li>用于比较<ul>
+<li>父<strong>は</strong>新聞を読み、私<strong>は</strong>アニメを見る。（前后小句对比）</li>
+<li>山田さんはドイツ語<strong>は</strong>上手です。（比起其它语言更擅长）</li>
+</ul>
+</li>
+</ul>
+<h5 id="も"><a href="#も" class="headerlink" title="も"></a>も</h5><ul>
+<li>表示也<ul>
+<li>田中さんは学生です。佐藤さん<strong>も</strong>学生です。</li>
+</ul>
+</li>
+<li>用于表示多<ul>
+<li>何万人<strong>も</strong>僕の動画を見ました。</li>
+</ul>
+</li>
+</ul>
+<h5 id="だけ"><a href="#だけ" class="headerlink" title="だけ"></a>だけ</h5><ul>
+<li>只，仅仅<ul>
+<li>（直接放在名词后面作为一个整体、添加在动词前面表示只有）</li>
+<li>あとは寝る<strong>だけ</strong>です。</li>
+<li>君に<strong>だけ</strong>話します。（意思与下一句相同）</li>
+<li>君<strong>だけ</strong>に話します。</li>
+</ul>
+</li>
+</ul>
+<h5 id="しか（…ない）"><a href="#しか（…ない）" class="headerlink" title="しか（…ない）"></a>しか（…ない）</h5><p>只、只有，后面接否定形式表示肯定的意思<br>私は魚しか食べないです。</p>
+<h5 id="など"><a href="#など" class="headerlink" title="など"></a>など</h5><p>…や…など</p>
+<h5 id="…でも"><a href="#…でも" class="headerlink" title="…でも"></a>…でも</h5><p>表示举例：从多个选项中选择其中一个进行举例<br>お茶でもいいですか。<br>表示最低限度：<br>それでも大丈夫です。</p>
+<h5 id="～まで"><a href="#～まで" class="headerlink" title="～まで"></a>～まで</h5><p>连……表示范围的进一步扩大<br>佐藤さんや田中さんがきました。田中さん<strong>まで</strong>きました。<br>日本語を勉強し、留学生試験に合格する<strong>まで</strong>になりました。</p>
+<h5 id="さえ"><a href="#さえ" class="headerlink" title="~さえ"></a>~さえ</h5><p>（本不应该出现）就连……<br>佐藤さんや田中さんがきました。田中さん<strong>さえ</strong>きました。</p>
+<h5 id="こそ"><a href="#こそ" class="headerlink" title="こそ"></a>こそ</h5><p>僕様<strong>こそ</strong>が神だ。</p>
+<h5 id="くらい、ぐらい"><a href="#くらい、ぐらい" class="headerlink" title="くらい、ぐらい"></a>くらい、ぐらい</h5><p>十人ぐらい来ました。<br>そのぐらいこと自分でできます。</p>
+<h5 id="ほど"><a href="#ほど" class="headerlink" title="ほど"></a>ほど</h5><p>左右<br>五分ほど待ちます。<br>去年の冬は今年<strong>より</strong>寒いです。<br>去年の冬は今年<strong>ほど</strong>寒くないです。</p>
+<p><strong>ほど</strong>ｖｓ<strong>ぐらい</strong><br>一般通用<br>泣きたい<strong>ほど</strong>&#x2F;<strong>ぐらい</strong>感動した。<br>程度较为极限时用<strong>ほど</strong><br>死ぬ<strong>ほど</strong>疲れた。</p>
+<h5 id="ばかり"><a href="#ばかり" class="headerlink" title="ばかり"></a>ばかり</h5><p>只、与だけ意思相同<br>肉<strong>ばかり</strong>たべる。<br>尽是、光是<br>嘘<strong>ばっかり</strong>。（谎话连篇，加促音表示强调）</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%89%AF%E5%8A%A9%E8%AF%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E4%B8%80%E7%95%AA%E3%81%AE%E5%AE%9D%E7%89%A9(Yui%20ver.)/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>顔を<ruby>合<rt>あ</rt></ruby>わしたら喧嘩してばかり</p>
+<pre><code>总是一见面就吵架  
+顔を合わす：碰面  
+てばかり：总是……
+</code></pre>
+<hr>
+<p>それもいい<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>で</rt></ruby>だった</p>
+<pre><code>（即便那样）也都是美好的回忆
+思い出：回忆，追忆
+</code></pre>
+<hr>
+<p>きみが教えてくれたんだ　もう<ruby>恐<rt>こわ</rt></ruby>くない</p>
+<pre><code>因为你教会了我啊 已经不会再害怕了
+</code></pre>
+<hr>
+<p>どんな<ruby>不自由<rt>ふじゆう</rt></ruby>でも幸せは<ruby>掴<rt>つか</rt></ruby>める　だから</p>
+<pre><code>无论如何被束缚也能抓住幸福 所以啊  
+掴む：抓，抓住，揪住；可能态-&gt;掴める 
+</code></pre>
+<hr>
+<p>ひとりでもゆくよ　<ruby>例<rt>たと</rt></ruby>え<ruby>辛<rt>つら</rt></ruby>くても  </p>
+<pre><code>独自一人也要走下去 哪怕路途崎岖
+辛い（からい）：刺激舌头的味道
+辛い（つらい）：痛苦
+たとえ……ても：即使是……也成立
+</code></pre>
+<hr>
+<p>きみと見た夢は　必ず持ってくよ  </p>
+<pre><code>和你相遇的梦 必定会带上
+</code></pre>
+<hr>
+<p>きみとがよかった　ほかの誰でもない  </p>
+<pre><code>和你在一起就好了 其他人都无所谓
+</code></pre>
+<hr>
+<p>でも<ruby>目覚<rt>めざ<rt/></ruby>めた朝　きみは居ないんだね</p>
+<pre><code>但是醒来的清晨 你就不在身边了呢
+目覚める：睡醒
+</code></pre>
+<hr>
+<p>ずっと遊んでれる　そんな気がしてた  </p>
+<pre><code>一直能够玩下去 心里这样觉得的
+</code></pre>
+<hr>
+<p>気がしていただけ　わかってる  </p>
+<pre><code>仅仅是这样想的 其实完全明白
+</code></pre>
+<hr>
+<p>生まれてきたこともう<ruby>後<rt>こう</rt></ruby><ruby>悔<rt>かい</rt></ruby>はしない  </p>
+<pre><code>对自己被生下来这件事不再感到后悔
+後悔する：后悔，懊悔
+</code></pre>
+<hr>
+<h2 id="祭まつりの後みたい-寂しいけど-そろそろ行こう犹如节日过后一般-只感到寂寞-差不多该走了-みたい（助词）：像……一样"><a href="#祭まつりの後みたい-寂しいけど-そろそろ行こう犹如节日过后一般-只感到寂寞-差不多该走了-みたい（助词）：像……一样" class="headerlink" title="祭まつりの後みたい　寂しいけど　そろそろ行こう犹如节日过后一般 只感到寂寞 差不多该走了 みたい（助词）：像……一样"></a><ruby>祭<rt>まつ</rt></ruby>りの後みたい　寂しいけど　そろそろ行こう<br><code>犹如节日过后一般 只感到寂寞 差不多该走了 みたい（助词）：像……一样</code></h2><p>どこまでもゆくよ　ここで知ったこと  </p>
+<pre><code>无论前方是何处都要前行 这是在这里知晓的东西
+</code></pre>
+<hr>
+<p>幸せという夢を<ruby>叶<rt>かな</rt></ruby>えてみせるよ  </p>
+<pre><code>叫作幸福的梦一定要实现给你看
+叶う：能实现，如愿以偿
+</code></pre>
+<hr>
+<p>きみと<ruby>離<rt>はな</rt></ruby>れても　どんなに遠くなっても  </p>
+<pre><code>就算和你分别 无论多么遥远
+離れる：分离，分别
+</code></pre>
+<hr>
+<p>新しい朝に　あたしは生きるよ</p>
+<pre><code>在某个崭新的早晨 我会开始新生 
+</code></pre>
+<hr>
+<p>ひとりでもゆくよ　死にたくなっても  </p>
+<pre><code>独自一人也要走下去 即使抱着死去的决心
+</code></pre>
+<hr>
+<p>声が聞こえるよ　死んではいけないと  </p>
+<pre><code>听到了一个声音说着不能死
+</code></pre>
+<hr>
+<p>例え辛くても　寂しさに<ruby>泣<rt>な</rt></ruby>いても  </p>
+<pre><code>哪怕再痛苦 哪怕独自哭泣着
+</code></pre>
+<hr>
+<p>心の奥には　<ruby>温<rt>ぬく</rt></ruby>もりを感じるよ  </p>
+<pre><code>内心深处 感受到了温暖啊
+温もり：温暖
+</code></pre>
+<hr>
+<p><ruby>巡<rt>めぐ</rt></ruby>って<ruby>流<rt>なが</rt></ruby>れて　時は<ruby>移<rt>うつ</rt></ruby>ろいだ  </p>
+<pre><code>轮回流转 时过境迁
+巡る：巡游，环行，绕行
+流れる：流淌，流动
+</code></pre>
+<hr>
+<p>もう何があったか　思い<ruby>出<rt>だ</rt></ruby>せないけど  </p>
+<pre><code>究竟经历了什么 已经想不起来了
+もう：表示强烈的情感，满意、不满、惊讶或失望
+</code></pre>
+<hr>
+<p>目を<ruby>閉<rt>と</rt></ruby>じてみれば　誰かの笑い声 </p>
+<pre><code>但是闭上双眼的话 （能听到）某人的笑声
+閉じる：闭上，自动、他动
+</code></pre>
+<hr>
+<p>なぜかそれが今一番の宝物</p>
+<pre><code>不知为何那成了如今最珍贵的宝物
+</code></pre>
+<hr>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E6%AD%8C%E8%AF%8D/" style="color: #ff7d73">歌词</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/ACG/" style="color: #ffa2c4">ACG</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E4%B8%80%E7%95%AA%E3%81%AE%E5%AE%9D%E7%89%A9(Yui%20ver.)/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/Sweet%20&%20Sweet%20CHERRY/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <div>
+    <ruby>
+        片手<rt>かたて</rt>
+    </ruby>には　
+    <ruby>甘<rt>あま</rt>
+    </ruby>くした　お
+    <ruby>
+        気<rt>き</rt>
+    </ruby>に
+    <ruby>入<rt>い</rt>
+    </ruby>りの<ruby>
+        カフェラテ<rt>かふぇらて</rt>
+    </ruby>
+</div>
+<div>
+    <ruby>
+        微笑<rt>ほほえ</rt>
+    </ruby>んだ
+    <ruby>
+        瞬間<rt>しゅんかん</rt>
+    </ruby>に　
+    <ruby>
+        恋<rt>こい</rt>
+    </ruby>の
+    <ruby>
+        香<rt>かお</rt>
+    </ruby>り
+</div>
+<div>
+    <ruby>
+        完璧<rt>かんぺき</rt>
+    </ruby>
+    に　<ruby>決<rt>き</rt></ruby>めたいの　<ruby>チェリ<rt>ちぇり</rt></ruby><ruby>ー色<rt>いろ</rt></ruby>の<ruby>ワンピ<rt>わんぴ</rt>
+        </ruby>ー<ruby>ス<rt>す</rt></ruby>
+</div>
+<div>
+    <ruby>爽<rt>さわ</rt></ruby>やかで　ときめいて　<ruby>君<rt>きみ</rt></ruby>へ<ruby>急<rt>いそ</rt></ruby>ごう
+</div>
+<br><br>
+<div>
+    (Oh Sweet & Sweet CHERRY)　<ruby>気<rt>き</rt></ruby>を<ruby>付<rt>つ</rt></ruby>けて　<ruby>甘<rt>あま</rt></ruby>い<ruby>罠<rt>
+            わな</rt></ruby>
+</div>
+<div>
+    (Oh Sweet & Sweet CHERRY)　yes　<ruby>囁<rt>ささや</rt></ruby>いてあげるから
+</div>
+<div>
+    (ねぇ　ちょっと<ruby>ドキドキ<rt>どきどき</rt></ruby>)　Ah~　<ruby>待<rt>ま</rt></ruby>ち<ruby>遠<rt>どお</rt></ruby>しいけど
+</div>
+<div>
+    どんな<ruby>笑顔<rt>えがお</rt></ruby>で<ruby>逢<rt>あ</rt></ruby>えばいい?
+</div>
+<br><br>
+<div>
+    Pretty love Pretty love　<ruby>君<rt>きみ</rt></ruby>が<ruby>愛<rt>いと</rt></ruby>しくて
+</div>
+<div>
+    Under the sky Under sunshine　<ruby>手<rt>て</rt></ruby>を<ruby>繋<rt>つな</rt></ruby>ごう
+</div>
+<div>
+    <ruby>素直<rt>すなお</rt></ruby>になれない　そんな<ruby>私<rt>わたし</rt></ruby>の<ruby>手<rt>て</rt></ruby>を　ひっぱっていてね
+</div>
+<br><br>
+<div>
+    <ruby>一日中<rt>いちにちじゅう</rt></ruby>　<ruby>私<rt>わたし</rt></ruby>なり　<ruby>恋<rt>こい</rt></ruby>の<ruby>法則<rt>ほうそく</rt>
+        </ruby>について
+</div>
+<div>
+    <ruby>考<rt>かんが</rt></ruby>えてみたけれど　<ruby>計算出来<rt>けいさんでき</rt></ruby>ない
+</div>
+<div>
+    ひねくれてみたりして　<ruby>困<rt>こま</rt></ruby>らせてみたりして
+</div>
+<div>
+    <ruby>戸惑<rt>とまど</rt></ruby>う<ruby>顔<rt>かお</rt></ruby>　<ruby>見<rt>み</rt></ruby>たくても　やっぱり<ruby>出来<rt>でき</rt></ruby>ない
+</div>
+<br><br>
+<div>
+    (Oh Sweet & Sweet CHERRY)　<ruby>本当<rt>ほんとう</rt></ruby>のこの<ruby>気持<rt>きも</rt></ruby>ちを
+</div>
+<div>
+    (Oh Sweet & Sweet CHERRY)　yes　<ruby>教<rt>おし</rt></ruby>えてあげるから
+</div>
+<div>
+    (ねぇ　ちょっと<ruby>ドキドキ<rt>どきどき</rt></ruby>)　Ah~　<ruby>大好<rt>だいす</rt></ruby>きだから
+</div>
+<div>
+    よそ<ruby>見<rt>み</rt></ruby>しないで　<ruby>見<rt>み</rt></ruby>つめて
+</div>
+<br><br>
+<div>
+    Pretty love Pretty love　<ruby>君<rt>きみ</rt></ruby>がまぶしくて
+</div>
+<div>
+    Under the sky Under sunshine　<ruby>語<rt>かた</rt></ruby>り<ruby>合<rt>あ</rt></ruby>おう
+</div>
+<div>
+    <ruby>優<rt>やさ</rt></ruby>しい<ruby>気持<rt>きも</rt></ruby>ちは　きっと<ruby>君<rt>きみ</rt></ruby>の<ruby>魔法<rt>まほう</rt>
+        </ruby>　いつまでもlovin' you
+</div>
+<div>
+    <ruby>例<rt>たと</rt></ruby>えば<ruby>傷<rt>きず</rt></ruby>ついても　ねぇ　<ruby>側<rt>そば</rt></ruby>にいるよ
+</div>
+<div>
+    <ruby>君<rt>きみ</rt></ruby>に　どうしようもなく　I'm so crazy for you
+</div>
+<br><br>
+<div>
+    Pretty love Pretty love　<ruby>君<rt>きみ</rt></ruby>が<ruby>愛<rt>いと</rt></ruby>しくて
+</div>
+<div>
+    Under the sky Under sunshine　<ruby>手<rt>て</rt></ruby>を<ruby>繋<rt>つな</rt></ruby>ごう
+</div>
+<div>
+    <ruby>素直<rt>すなお</rt></ruby>になれない　そんな<ruby>私<rt>わたし</rt></ruby>の<ruby>手<rt>て</rt></ruby>を　ひっぱっていてね
+</div>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/Sweet%20&%20Sweet%20CHERRY/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/apache2-4%E6%97%A0%E6%8A%A5%E9%94%99%E4%BD%86%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/">
+        <h2 class="post-title">Apache服务启动失败</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>net start Apache2.4无报错，但启动失败</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/apache2-4%E6%97%A0%E6%8A%A5%E9%94%99%E4%BD%86%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AF%B9%E5%90%8C%E4%B8%80%E5%BC%A0%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C/">
+        <h2 class="post-title">Mysql触发器对同一张表进行操作</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数据库
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>mysql触发器对同一张表进行操作不能使用update和insert</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/mysql/" style="color: #00bcd4">mysql</a>
+        </span>
+        
+    </div>
+    <a href="/blog/mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AF%B9%E5%90%8C%E4%B8%80%E5%BC%A0%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/Welcome/">
+        <h2 class="post-title">Welcome!</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="/blog/background.bmp" alt="图片">  </p>
+<div style="margin: 10px 25% 10px 25%; width: 50%; text-align: center">
+<h1>欢迎光临</h1>
+<p>我会时不时在这里分享一些莫名其妙的感悟，文章和笔记，希望你能在这玩得开心！(o゜▽゜)o☆，感谢你的来访！</p>
+</div>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/Welcome/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+        <a class="page-num" href="/blog/page/4/">
+            <i class="fa-solid fa-caret-left fa-fw"></i>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            <a class="page-num" href="/blog/">1</a>
+            <span class="page-omit">...</span>
+            
+            
+            
+            
+            <a class="page-num" href="/blog/page/3">3</a>
+            
+            
+            <a class="page-num" href="/blog/page/4/">4</a>
+        </span>
+        
+        <span class="current">5</span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>中二</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Arkueid">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/31373462">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:thetardis@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+    </body>
+</html>

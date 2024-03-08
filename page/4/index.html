@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/blog/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/blog/images/background5.png"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>どんな不自由でも、幸せを掴める</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E5%9F%BA%E6%9C%AC%E5%9E%8B/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>名[人]　は　动（基本型）　ことが　できます</p>
+<blockquote>
+<p>表示能力。在回答别人的询问时，肯定的情况下使用“できます”。否定的情况下可以使用“できません”。<br>例：<br>スミスさんは　ピアノを　弾く　ことが　できます。<br>森さんは　中華料理を作る　ことが　できますか。<br>ーはい、できます。</p>
+</blockquote>
+<p>名　は　动（基本型）　ことです</p>
+<blockquote>
+<p>当谓语部分的内容是一种动作、行为时使用这句型。<br>私の趣味は　切手を集める　ことです。<br>王さんの特技は　胡弓を弾く　ことです。<br>森さんの夢は　外国に住む　ことです。</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E5%9F%BA%E6%9C%AC%E5%9E%8B/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%BE%E3%81%99%E5%BD%A2/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><strong>一类动词</strong></p>
+<blockquote>
+<p>う段  变为同行的 <em>い段</em> 再加 <em>ます</em><br>例如：<ruby>書<rt style="font-size: 10pt">か</rt></ruby>く $\rightarrow$  <ruby>書<rt style="font-size: 10pt">か</rt>きます</ruby> </p>
+</blockquote>
+<p><strong>二类动词</strong></p>
+<blockquote>
+<p><em>る</em> 变为 <em>ます</em><br>例如：<ruby>教<rt style="font-size: 10pt">おし</rt>える</ruby> $\rightarrow$ <ruby>教<rt style="font-size: 10pt">おし</rt>えます</ruby></p>
+</blockquote>
+<p><strong>三类动词</strong></p>
+<blockquote>
+<p>くる　$\rightarrow$ きます、する $\rightarrow$ します<br>例如：勉強する $\rightarrow$ 勉強します</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%BE%E3%81%99%E5%BD%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%84%E6%AE%B5%E5%8A%A0%E3%81%BE%E3%81%99%E4%BD%86%E4%B8%BA%E4%BA%8C%E7%B1%BB%E5%8A%A8%E8%AF%8D/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <table>
+<thead>
+<tr>
+<th>基本形</th>
+<th>ます形</th>
+<th>て形</th>
+<th>ない形</th>
+<th>た形</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>いる</td>
+<td>います</td>
+<td>いて</td>
+<td>いない</td>
+<td>いた</td>
+</tr>
+<tr>
+<td>お(起)きる</td>
+<td>おきます</td>
+<td>おきて</td>
+<td>おきない</td>
+<td>おきた</td>
+</tr>
+<tr>
+<td>き(着)る</td>
+<td>きます</td>
+<td>きて</td>
+<td>きない</td>
+<td>きた</td>
+</tr>
+<tr>
+<td>す(過)ぎる</td>
+<td>すぎます</td>
+<td>すぎて</td>
+<td>すぎない</td>
+<td>すぎた</td>
+</tr>
+<tr>
+<td>で(出)き(来)る</td>
+<td>できます</td>
+<td>できて</td>
+<td>できない</td>
+<td>できた</td>
+</tr>
+<tr>
+<td>み(見)る</td>
+<td>みます</td>
+<td>みて</td>
+<td>みない</td>
+<td>みた</td>
+</tr>
+</tbody></table>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%84%E6%AE%B5%E5%8A%A0%E3%81%BE%E3%81%99%E4%BD%86%E4%B8%BA%E4%BA%8C%E7%B1%BB%E5%8A%A8%E8%AF%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%9F%E5%BD%A2/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>规则同 [[动词て形#变形规则]]，将て替换为た即可。<br>![[动词て形#变形规则]]</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%9F%E5%BD%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%A6%E5%BD%A2/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="变形规则"><a href="#变形规则" class="headerlink" title="变形规则"></a>变形规则</h5><p><strong>一类动词</strong></p>
+<blockquote>
+<p>す $\rightarrow$ して<br>く$\rightarrow$ いて<br>ぐ$\rightarrow$ いで<br>う、つ、る$\rightarrow$ って<br>ぶ、む、ぬ$\rightarrow$ んで<br>特例：行く$\rightarrow$ 行って</p>
+</blockquote>
+<p><strong>二类动词</strong></p>
+<blockquote>
+<p>る$\rightarrow$ て</p>
+</blockquote>
+<p><strong>三类动词</strong></p>
+<blockquote>
+<p>する$\rightarrow$ して<br>くる$\rightarrow$ きて</p>
+</blockquote>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><p><strong>动 て 动</strong> </p>
+<blockquote>
+<p>动词1て形+动词2，表示相继发生</p>
+</blockquote>
+<p><strong>动てから 动</strong></p>
+<blockquote>
+<p>表示相继发生，一般只用于两个动词连用</p>
+</blockquote>
+<p><strong>动て　ください</strong></p>
+<blockquote>
+<p>请求某人做某事</p>
+</blockquote>
+<p><strong>动て　います</strong></p>
+<blockquote>
+<p>表示正在进行</p>
+</blockquote>
+<p><strong>动ても　いいです</strong></p>
+<blockquote>
+<p>表许可<br>例如：<br>窓を少し開けてもいいですか。（稍微开下窗可以吗？）</p>
+<ul>
+<li>ええ&#x2F;はい、どうぞ&#x2F;いいですよ。（肯定回答）</li>
+<li>いえ、それはちょっと… （委婉拒绝，并说明原因）</li>
+<li>すみません、…から。（委婉拒绝，并说明原因）</li>
+<li>いけません。 （强硬拒绝，表示禁止、不允许）</li>
+</ul>
+</blockquote>
+<p><strong>动て　は　いけません</strong></p>
+<blockquote>
+<p>表示禁止，不允许，对尊长应使用：~ないでください。</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%A6%E5%BD%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%AA%E3%81%84%E5%BD%A2/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <blockquote>
+<p>未然形　+　ない</p>
+</blockquote>
+<h5 id="变形规则"><a href="#变形规则" class="headerlink" title="变形规则"></a>变形规则</h5><p><strong>一类动词</strong></p>
+<blockquote>
+<p>将结尾的う段变为同行的あ段，再加ない<br><strong>特例：う　$\rightarrow$　 わ</strong></p>
+</blockquote>
+<ul>
+<li>例：<br>  話す　$\rightarrow$　話さない<br>  買う　$\rightarrow$　買わない</li>
+</ul>
+<p><strong>二类动词</strong></p>
+<blockquote>
+<p>去掉る，再加ない</p>
+</blockquote>
+<ul>
+<li>例：<br>  食べる　$\rightarrow$　食べない<br>  見る　$\rightarrow$　見ない</li>
+</ul>
+<p><strong>三类动词</strong></p>
+<blockquote>
+<p><ruby>来<rt style="font-size: 10pt">く</rt>る</ruby>　$\rightarrow$　<ruby>来<rt style="font-size: 10pt">こ</rt>ない</ruby><br>する　$\rightarrow$　し、せ、さ</p>
+</blockquote>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><p><strong>未然形　＋　ないでください</strong></p>
+<blockquote>
+<p>例：<br>忘れ　ないでください。（请不要忘记。）<br>この部屋に　入ら　ないでください。（请不要进入这个房间）<br>無理を　し　ないでください。（请不要勉强自己。）<br>部屋に　ご飯を　食べ　ないでください。（请不要在房间吃饭）</p>
+</blockquote>
+<p><strong>未然形　＋　なければ　なりません</strong></p>
+<blockquote>
+<p>表示<font color="red">必须</font>。也可以用“ないと　いけません”代替，后者比较口语化。<br>例：<br>李さんは　今日　早く　帰ら　なければ　なりません。<br>この薬は　毎日　飲ま　なければ　なりません。<br>すぐに　書類を　送ら　ないと　いけません。<br>私は　宿題を　書か　なければ　なりません。<br>私は　宿題を　書か　ないと　いけません。</p>
+</blockquote>
+<p><strong>未然形　＋　なくても　いいです</strong></p>
+<blockquote>
+<p>表示不做某事也可以。意思相当于“～なければ　なりません”的否定。<br>例：<br>明日は　残業し　なくても　いいです。<br>慌て　なくでも　いいですよ。<br>靴を　脱が　なくても　いいですか。<br>明日、　運動し　なくでも　いいです。</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E5%8A%A8%E8%AF%8D%E3%81%AA%E3%81%84%E5%BD%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E6%9C%AA%E7%84%B6%E5%BD%A2%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="五段动词"><a href="#五段动词" class="headerlink" title="五段动词"></a>五段动词</h5><p>有变为あ、お段两种<br>特殊：う-&gt;わ、う-&gt;お</p>
+<h5 id="一段动词"><a href="#一段动词" class="headerlink" title="一段动词"></a>一段动词</h5><p>去掉る即可</p>
+<h5 id="か变和さ变"><a href="#か变和さ变" class="headerlink" title="か变和さ变"></a>か变和さ变</h5><p>来る-&gt;来（こ）<br>す-&gt;し、せ、さ</p>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><h6 id="未然形（五段动词的あ段未然形）＋助动词ない"><a href="#未然形（五段动词的あ段未然形）＋助动词ない" class="headerlink" title="未然形（五段动词的あ段未然形）＋助动词ない"></a>未然形（五段动词的あ段未然形）＋助动词ない</h6><p>表示否定</p>
+<h6 id="可能态-（ら）れる"><a href="#可能态-（ら）れる" class="headerlink" title="可能态 （ら）れる"></a>可能态 （ら）れる</h6><p><strong>五段动词</strong>：あ段未然形+れる-&gt;一般简写为eる<br>行く-&gt;行かれる-&gt;行ける<br><strong>一段动词</strong>：未然形+られる<br><strong>か变动词</strong>：未然形+られる<br><strong>さ变</strong>：-&gt;できる</p>
+<h5 id="被动态-（ら）れる"><a href="#被动态-（ら）れる" class="headerlink" title="被动态 （ら）れる"></a>被动态 （ら）れる</h5><p><strong>五段动词</strong>：变为あ段＋られる<br><strong>一段动词</strong>：去掉る+られる<br><strong>か变动词</strong>：こられる<br><strong>さ变动词</strong>：<font style="color: red">さ</font>れる</p>
+<h5 id="使役态-（さ）せる"><a href="#使役态-（さ）せる" class="headerlink" title="使役态　（さ）せる"></a>使役态　（さ）せる</h5><p><strong>五段动词</strong>：あ段未然形+せる<br><strong>一段动词</strong>：未然形+させる<br><strong>か变动词</strong>：未然形+させる<br><strong>さ变动词</strong>：未然形＋させる</p>
+<h5 id="意志形-よう"><a href="#意志形-よう" class="headerlink" title="意志形　よう"></a>意志形　よう</h5><p><strong>五段动词</strong>：お段未然形+う<br><strong>一段动词</strong>：未然形+よう<br><strong>か变&#x2F;さ变动词</strong>：未然形+よう</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E6%9C%AA%E7%84%B6%E5%BD%A2%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E8%BF%9E%E7%94%A8%E5%BD%A2%E5%8F%8A%E5%85%B6%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h5 id="原形-gt-连用形"><a href="#原形-gt-连用形" class="headerlink" title="原形-&gt;连用形"></a>原形-&gt;连用形</h5><p><strong>五段动词</strong>：う段变为同行的あ段<br><strong>一段动词</strong>：去る<br><strong>さ变动词</strong>：す-&gt;し<br><strong>か变动词</strong>：か-&gt;き</p>
+<h6 id="用作名词"><a href="#用作名词" class="headerlink" title="用作名词"></a>用作名词</h6><p>彼は走りが早い（不常见）<br>较为常用的用法：<br>僕たちは明日旅行（し）に行く。<br>（由于さ变动词是由名词+す构成的，所以可以直接取名词部分，较为常见）</p>
+<h6 id="构成复合动词"><a href="#构成复合动词" class="headerlink" title="构成复合动词"></a>构成复合动词</h6><p>动词连用形+动词<br>書く（书写）+直す（修正）&#x3D;書き直す（重新写）<br>咲く（开花）+誇る（夸赞）&#x3D;咲き誇る（盛开）</p>
+<h6 id="连接句子"><a href="#连接句子" class="headerlink" title="连接句子"></a>连接句子</h6><p>父は新聞を<strong>読み</strong>、私はアニメを見る。<br>（比较正式、口语一般不用）</p>
+<h6 id="构成て形"><a href="#构成て形" class="headerlink" title="构成て形"></a>构成て形</h6><p>直接加て<br>为了发音方便（音便），读音会发生变化，也就是て形的变化</p>
+<h6 id="构成た形"><a href="#构成た形" class="headerlink" title="构成た形"></a>构成た形</h6><p>同て形</p>
+<h6 id="构成ます形"><a href="#构成ます形" class="headerlink" title="构成ます形"></a>构成ます形</h6><p>直接加ます</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E8%BF%9E%E7%94%A8%E5%BD%A2%E5%8F%8A%E5%85%B6%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E3%81%8A%E3%81%8A%E3%81%9C%E3%81%84%E3%81%84/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>#名词<br>一大群<br>#副词<br>大量地</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E3%81%8A%E3%81%8A%E3%81%9C%E3%81%84%E3%81%84/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E6%97%B6%E3%80%81%E4%BD%93/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/blog/%E6%97%B6%E3%80%81%E4%BD%93/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+        <a class="page-num" href="/blog/page/3/">
+            <i class="fa-solid fa-caret-left fa-fw"></i>
+        </a>
+        
+    </div>
+    <div class="page-index">
+        
+        <span>
+            
+            <a class="page-num" href="/blog/">1</a>
+            <span class="page-omit">...</span>
+            
+            
+            
+            
+            <a class="page-num" href="/blog/page/2">2</a>
+            
+            
+            <a class="page-num" href="/blog/page/3/">3</a>
+        </span>
+        
+        <span class="current">4</span>
+        
+        <span>
+            <a class="page-num" href="/blog/page/5/">5</a>
+            
+            
+        </span>
+        
+    </div>
+    <div class="next">
+        
+        <a class="page-num" href="/blog/page/5/">
+            <i class="fa-solid fa-caret-right fa-fw"></i>
+        </a>
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>中二</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Arkueid">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/31373462">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:thetardis@qq.com">
+                    <i
+                        class="fa-solid fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+    </body>
+</html>

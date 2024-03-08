@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title> | 一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><h2 id="体言"><a href="#体言" class="headerlink" title="体言"></a>体言</h2><p>体言是用来表示事物概念的词。包括：名词、代词和数词。这些词没有词形的变化。</p>
+<p><strong>名词</strong>：人、物、时间等与中国名词一样。比如人：ひと、じかん<br><strong>代词</strong>：你，我，他。あなた、わたし、あのひと、これ、それ<br><strong>数词</strong>：基数词，序数词，量词等。比如：ひとつ、一番、一枚</p>
+<h2 id="用言"><a href="#用言" class="headerlink" title="用言"></a>用言</h2><p>用言是表示事物动作，变化，或是描述事物性质状态的词。这类词包括：动词，形容词，形容动词。这些词全部都有一定的变化。</p>
+<p><strong>动词</strong>：一类动词，二类动词，三类动词<br><strong>形容词</strong>：词尾加い。表示客观属性。表示说话人的主观感觉。<br><strong>形容动词</strong>：词尾加だ。表示客观属性。表示说话人主观感觉。</p>
+<h2 id="助词"><a href="#助词" class="headerlink" title="助词"></a>助词</h2><p>助词，不单独使用，一般接在体言后面，无词形的变化。</p>
+<p><strong>格助词</strong>：接体言之后，表示体言与句子中其他词语的关系。比如：が、を、に、と、で、へ、から、まで、より、の<br><strong>接续助词</strong>：把用言和用言，小句与小句连接起来，构成相当于体言的词组。比如：て、ながら、し、から、ので、ば、たら等等。<br><strong>并列助词</strong>：把词和词，词组与词组并列起来，构成相当于体言的词组。比如：と、やら、たり等等。<br><strong>提示助词</strong>：提示句中的某个成分，是谓语的作用对象。比如：は、も等等。<br><strong>副助词</strong>：接着以体言为主的各种词后，添加一定的语法意义，对谓语进行补充说明。比如：だけ、ばかり等等。<br><strong>语气助词</strong>：位于句末，表示说话人的语气。よ、わ、さ等等。</p>
+<h2 id="助动词"><a href="#助动词" class="headerlink" title="助动词"></a>助动词</h2><p>助动词，不单独使用，一般接在用言后面，有词形的变化。</p>
+<p><strong>表示判断助动词</strong>：一般有だ、である两种形式。<br><strong>表示态的助动词</strong>：能够构成动词的多种态。比如れる、られる等等。<br><strong>与敬语有关的助动词</strong>：一类是构成郑重语的助动词，比如ます、です。另一种是构成尊敬语的助动词，比如れる。<br><strong>表示时的助动词</strong>：主要是指た、表示过去的动作。<br><strong>表示语气的助动词</strong>：表达情感的语气词。主要有たい、ない、まい、そうだ、らしい等等。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <hr />
+    <div id="vcomments" style="margin: 20px; font-size: large;"></div>
+</div>
+  
+
+
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+        
+
+
+
+
+
+<div style="margin: 20px 25% 20px 25%; width: 50%;">
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'xZKV7RT9m5oaLdk3qrgHheB1-gzGzoHsz',
+        appKey: 'LH16iBMFzQ5mAYhEzI8qzjKu',
+        enableQQ: true,
+        path: window.location.pathname,
+        notify: true,
+        verify: false,
+        avatar: 'monsterid',//小怪物头像
+        placeholder: "昵称输入QQ号可以获取头像哦~网址可以填你的个人主页~" 
+    })
+</script>
+</div>
+
+
+        
+    </body>
+</html>

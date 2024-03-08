@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title> | 一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/8
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h5 id="は"><a href="#は" class="headerlink" title="は"></a>は</h5><ul>
+<li>提示主题</li>
+<li>用于比较<ul>
+<li>父<strong>は</strong>新聞を読み、私<strong>は</strong>アニメを見る。（前后小句对比）</li>
+<li>山田さんはドイツ語<strong>は</strong>上手です。（比起其它语言更擅长）</li>
+</ul>
+</li>
+</ul>
+<h5 id="も"><a href="#も" class="headerlink" title="も"></a>も</h5><ul>
+<li>表示也<ul>
+<li>田中さんは学生です。佐藤さん<strong>も</strong>学生です。</li>
+</ul>
+</li>
+<li>用于表示多<ul>
+<li>何万人<strong>も</strong>僕の動画を見ました。</li>
+</ul>
+</li>
+</ul>
+<h5 id="だけ"><a href="#だけ" class="headerlink" title="だけ"></a>だけ</h5><ul>
+<li>只，仅仅<ul>
+<li>（直接放在名词后面作为一个整体、添加在动词前面表示只有）</li>
+<li>あとは寝る<strong>だけ</strong>です。</li>
+<li>君に<strong>だけ</strong>話します。（意思与下一句相同）</li>
+<li>君<strong>だけ</strong>に話します。</li>
+</ul>
+</li>
+</ul>
+<h5 id="しか（…ない）"><a href="#しか（…ない）" class="headerlink" title="しか（…ない）"></a>しか（…ない）</h5><p>只、只有，后面接否定形式表示肯定的意思<br>私は魚しか食べないです。</p>
+<h5 id="など"><a href="#など" class="headerlink" title="など"></a>など</h5><p>…や…など</p>
+<h5 id="…でも"><a href="#…でも" class="headerlink" title="…でも"></a>…でも</h5><p>表示举例：从多个选项中选择其中一个进行举例<br>お茶でもいいですか。<br>表示最低限度：<br>それでも大丈夫です。</p>
+<h5 id="～まで"><a href="#～まで" class="headerlink" title="～まで"></a>～まで</h5><p>连……表示范围的进一步扩大<br>佐藤さんや田中さんがきました。田中さん<strong>まで</strong>きました。<br>日本語を勉強し、留学生試験に合格する<strong>まで</strong>になりました。</p>
+<h5 id="さえ"><a href="#さえ" class="headerlink" title="~さえ"></a>~さえ</h5><p>（本不应该出现）就连……<br>佐藤さんや田中さんがきました。田中さん<strong>さえ</strong>きました。</p>
+<h5 id="こそ"><a href="#こそ" class="headerlink" title="こそ"></a>こそ</h5><p>僕様<strong>こそ</strong>が神だ。</p>
+<h5 id="くらい、ぐらい"><a href="#くらい、ぐらい" class="headerlink" title="くらい、ぐらい"></a>くらい、ぐらい</h5><p>十人ぐらい来ました。<br>そのぐらいこと自分でできます。</p>
+<h5 id="ほど"><a href="#ほど" class="headerlink" title="ほど"></a>ほど</h5><p>左右<br>五分ほど待ちます。<br>去年の冬は今年<strong>より</strong>寒いです。<br>去年の冬は今年<strong>ほど</strong>寒くないです。</p>
+<p><strong>ほど</strong>ｖｓ<strong>ぐらい</strong><br>一般通用<br>泣きたい<strong>ほど</strong>&#x2F;<strong>ぐらい</strong>感動した。<br>程度较为极限时用<strong>ほど</strong><br>死ぬ<strong>ほど</strong>疲れた。</p>
+<h5 id="ばかり"><a href="#ばかり" class="headerlink" title="ばかり"></a>ばかり</h5><p>只、与だけ意思相同<br>肉<strong>ばかり</strong>たべる。<br>尽是、光是<br>嘘<strong>ばっかり</strong>。（谎话连篇，加促音表示强调）</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <hr />
+    <div id="vcomments" style="margin: 20px; font-size: large;"></div>
+</div>
+  
+
+
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+        
+
+
+
+
+
+<div style="margin: 20px 25% 20px 25%; width: 50%;">
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'xZKV7RT9m5oaLdk3qrgHheB1-gzGzoHsz',
+        appKey: 'LH16iBMFzQ5mAYhEzI8qzjKu',
+        enableQQ: true,
+        path: window.location.pathname,
+        notify: true,
+        verify: false,
+        avatar: 'monsterid',//小怪物头像
+        placeholder: "昵称输入QQ号可以获取头像哦~网址可以填你的个人主页~" 
+    })
+</script>
+</div>
+
+
+        
+    </body>
+</html>
