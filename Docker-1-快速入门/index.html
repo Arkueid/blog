@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>Docker-1-快速入门 | 一番の宝物★</title>
+        <meta name="author" content="Arkueid" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/blog/images/favicon.ico" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/blog/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/blog/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>Docker-1-快速入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/8
+        </span>
+        
+        <span class="category">
+            <a href="/blog/categories/Docker/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Docker
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/blog/tags/Docker/" style="color: #ff7d73">Docker</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Docker和虚拟机的区别"><a href="#Docker和虚拟机的区别" class="headerlink" title="Docker和虚拟机的区别"></a>Docker和虚拟机的区别</h1><p>虚拟机：宿主机操作系统-&gt;抽象硬件层-&gt;操作系统-&gt;应用软件  </p>
+<blockquote>
+<p>虚拟机使操作系统能够直接在宿主机的操作系统上运行，而不需要在宿主机上安装系统和引导</p>
+</blockquote>
+<p>Docker: 宿主机操作系统-&gt;Docker-&gt;应用软件  </p>
+<blockquote>
+<p>Docker使应用程序能够在不同操作系统上运行，而不需要进行环境配置等前置操作</p>
+</blockquote>
+<h1 id="Docker核心概念"><a href="#Docker核心概念" class="headerlink" title="Docker核心概念"></a>Docker核心概念</h1><ul>
+<li>镜像（Image）<blockquote>
+<p>简单理解：应用程序+文件系统（包含运行环境）<br>编写好的项目如果想在其他设备上运行，则使用Docker打包为镜像，将镜像作为一个整体，通过Docker在另一台设备上运行。 </p>
+</blockquote>
+</li>
+<li>容器（Container）<blockquote>
+<p>简单理解：容器和镜像的关系就如同面向对象中的实例（容器）和类（镜像）<br>镜像是静态的，而容器是动态的。类比程序和进程。</p>
+</blockquote>
+</li>
+<li>客户端（Client）<blockquote>
+<p>用户&#x2F;程序员通过Docker Client对容器、镜像等进行管理</p>
+</blockquote>
+</li>
+<li>Docker守护进程（Docker Daemon）<blockquote>
+<p>简单理解：Docker Server，用户通过Client操作Daenon，实际对镜像、容器进行操作的是Docker Daemon。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="构建自己的镜像"><a href="#构建自己的镜像" class="headerlink" title="构建自己的镜像"></a>构建自己的镜像</h1><p>以vue项目为例  </p>
+<pre><code class="shell">npm init vite
+</code></pre>
+<p>假设项目根目录为vue-demo  </p>
+<pre><code class="shell">vim vite.config.ts
+</code></pre>
+<p>将host改为<code>0.0.0.0</code>  </p>
+<pre><code class="ts">// vite.config.ts
+...
+    server: &#123;
+        host: &quot;0.0.0.0&quot;,
+        port: 8080
+    &#125;
+...
+</code></pre>
+<p>创建<code>Dockerfile</code>（文件名注意大小写）</p>
+<pre><code class="Dockerfile"># Dockerfile
+FROM node:18
+
+ADD . /app
+
+WORKDIR /app
+
+RUN npm i
+
+CMD npm run dev
+</code></pre>
+<p>创建dockerignore，排除不打包的文件和目录  </p>
+<pre><code class="docker"># dockerignore
+node_modules
+</code></pre>
+<p>将当前目录打包为镜像  </p>
+<pre><code class="shell"># 镜像版本=v1，镜像名称=vue-demo
+docker build -t vue-demo:v1
+</code></pre>
+<p>查看创建的镜像</p>
+<pre><code class="shell">docker images
+</code></pre>
+<p>创建容器并运行  </p>
+<pre><code class="shell">docker run -d -p 80:8080 --name vue1 vue-demo:v1
+</code></pre>
+<p>查看正在运行的容器  </p>
+<pre><code class="shell">docker ps
+</code></pre>
+<p>查看创建的容器列表</p>
+<pre><code class="shell">docker container ls
+</code></pre>
+<p>停止运行中的容器</p>
+<pre><code class="shell">docker stop 容器id/进程id
+</code></pre>
+<p>删除容器</p>
+<pre><code class="shell">docker rm 容器名称/容器id
+</code></pre>
+<p>删除镜像</p>
+<pre><code class="shell">docker rmi vue-demo:v1
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <hr />
+    <div id="vcomments" style="margin: 20px; font-size: large;"></div>
+</div>
+  
+
+
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/blog/js/main.js"></script>
+        
+        
+
+
+
+
+
+<div style="margin: 20px 25% 20px 25%; width: 50%;">
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'xZKV7RT9m5oaLdk3qrgHheB1-gzGzoHsz',
+        appKey: 'LH16iBMFzQ5mAYhEzI8qzjKu',
+        enableQQ: true,
+        path: window.location.pathname,
+        notify: true,
+        verify: false,
+        avatar: 'monsterid',//小怪物头像
+        placeholder: "昵称输入QQ号可以获取头像哦~网址可以填你的个人主页~" 
+    })
+</script>
+</div>
+
+
+        
+    </body>
+</html>
