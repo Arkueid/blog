@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>一番の宝物★</title>
+    <meta name="author" content="Arkueid" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/60457155?v=4" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/blog/js/lib/highlight.js"></script>
+
+
+
+<script src="/blog/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/blog/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/blog/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/blog/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/blog/">
+            <span>一番の宝物★</span>
+        </a>
+        
+        <a href="/blog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/blog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/blog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/blog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/blog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;一番の宝物★</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/blog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/blog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/blog/sakurasou.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>つまらないのは時間じゃない、つまらないのは平凡な自分だ。</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/blog/%E6%97%A5%E8%AF%AD%E8%AF%8D%E5%8F%98%E5%BD%A2%E5%86%8D%E6%80%BB%E7%BB%93/">
+        <h2 class="post-title">日语动词变形再总结</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%97%A5%E8%AF%AD/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日语
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>了解词的各种形式，在分析句子结构，分析各种助词的搭配很有帮助。</p>
+<h2 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h2><h3 id="连用形"><a href="#连用形" class="headerlink" title="连用形"></a>连用形</h3><blockquote>
+<p>ます形</p>
+</blockquote>
+<blockquote>
+<p>て､た形</p>
+<p>发生音变:</p>
+<p>く　いて</p>
+<p>ぐ　いで</p>
+<p>う､つ､る　って</p>
+<p>ぶ､む､ぬ　んで</p>
+<p>す　して</p>
+</blockquote>
+<h3 id="未然形"><a href="#未然形" class="headerlink" title="未然形"></a>未然形</h3><blockquote>
+<p>ない形：う　段变为　あ　 段</p>
+</blockquote>
+<blockquote>
+<p>意志形</p>
+<p>う　よう 形</p>
+<p>一类：词尾的　う　段假名变为　お　段再加　う</p>
+<p>二类：去る加よう</p>
+<p>三类动词：来る　こよう､する　こよう</p>
+</blockquote>
+<h3 id="假定形"><a href="#假定形" class="headerlink" title="假定形"></a>假定形</h3><blockquote>
+<p>ば形：结尾　う　段变为　え　段</p>
+</blockquote>
+<h3 id="命令形"><a href="#命令形" class="headerlink" title="命令形"></a>命令形</h3><blockquote>
+<p>三类动词：</p>
+<p>来る　来い</p>
+<p>する　しろ･せよ（后者更书面）</p>
+<p>二类动词：</p>
+<p>取　る　加　ろ　或者　よ</p>
+<p>一类动词：</p>
+<p>う　段变为　え　段</p>
+</blockquote>
+<h3 id="终止形、连体形"><a href="#终止形、连体形" class="headerlink" title="终止形、连体形"></a>终止形、连体形</h3><blockquote>
+<p>动词的终止形和连体形就是动词原形</p>
+<p>连体形：连接体言</p>
+</blockquote>
+<h2 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h2><blockquote>
+<p>连用形 く･かっ<br>终止形和连体形，和原形一样<br>假定形 いー&gt;けれ</p>
+</blockquote>
+<h2 id="形容动词"><a href="#形容动词" class="headerlink" title="形容动词"></a>形容动词</h2><blockquote>
+<p>连用形 な･で･だっ<br>连体形 な<br>终止形 だ<br>假定形 なら</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="color: #00bcd4">日语语法</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E6%97%A5%E8%AF%AD%E8%AF%8D%E5%8F%98%E5%BD%A2%E5%86%8D%E6%80%BB%E7%BB%93/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5jp/">
+        <h2 class="post-title">每日一句（日语）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%97%A5%E8%AF%AD/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日语
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/13
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <blockquote>
+<p>真面目とはね､ 君､ 真剣勝負の意味だよ｡ </p>
+<p>真面目 まじめ</p>
+<p>真剣 しんけん</p>
+<p>勝負 しょうぶ</p>
+</blockquote>
+<p>所谓认真，是指认真对待胜负的意思。</p>
+<blockquote>
+<p>未来は美しい夢を信じる人のためにあります。</p>
+</blockquote>
+<p>未来是为那些相信梦想的人而存在。</p>
+<blockquote>
+<p>信念は、行動に移さなければ価値がない。</p>
+<p>信念：しん　ねん</p>
+<p>行動：こう　どう</p>
+<p>移す：うつ　す</p>
+<p>価値：か　ち</p>
+<p>假定型做补语</p>
+</blockquote>
+<p>信念，若不转换成为行动将毫无价值。</p>
+<blockquote>
+<p>影があるってことは、近くに光があるって証拠さ。</p>
+</blockquote>
+<p>有阴影，说明近处有光。</p>
+<blockquote>
+<p>夜明け前が一番暗いんだって。もうすぐ夜が明けるよ。</p>
+<p>夜明け：天亮的时候，拂晓，黎明。よあけ</p>
+</blockquote>
+<p>据说黎明前是最黑暗的（时刻）。天不久就会亮了哦。</p>
+<blockquote>
+<p>経営とは、人として正しい生き方を貫くことだ。</p>
+<p>経営：けいえい 经营</p>
+<p>貫く：つらぬく 贯穿，坚持到底</p>
+<p>人として：as a human &#x2F; with  </p>
+</blockquote>
+<p>所谓经营，就是作为一个人将正确的生活方式贯彻到底。</p>
+<blockquote>
+<p>時代は移り変わっても、子供たちの本質は変わらない。</p>
+</blockquote>
+<p>时代会改变，但孩子们不会改变。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E6%97%A5%E8%AF%AD/" style="color: #00a596">日语</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5jp/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E6%97%A5%E8%AF%AD%E5%90%8D%E8%AF%8D%E5%88%86%E7%B1%BB/">
+        <h2 class="post-title">日语名词分类</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%97%A5%E8%AF%AD/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日语
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/11
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>日语中的名词属于<em>体言</em>。体言分为：<em>名词</em>，<em>代名词</em>，<em>数词</em>。</p>
+<p>名词可分为：  </p>
+<ul>
+<li>名词（名詞･めいし）<ul>
+<li>名词</li>
+<li>时间名词（時の名詞･ときのめいし）<ul>
+<li>时点名词：表示绝对时间的名词<sup><a href="#1-22222">1</a></sup>，通常需要加に构成表时间的补语，但年份、和表示大概时间的~ごろ<strong>可以</strong>不用加</li>
+<li>时段名词：一般情况下，加に表示在时期内的某个时间点，不加に表示整个过程中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>形式名词<ul>
+<li>纯粹形式名词，如：こと、もの、の</li>
+<li>有附加意义的形式名词：つもり、ため、ところ</li>
+</ul>
+</li>
+</ul>
+<h6 id="1-与之相对的是表示相对时间的名词，如：明日。"><a href="#1-与之相对的是表示相对时间的名词，如：明日。" class="headerlink" title="[1]: 与之相对的是表示相对时间的名词，如：明日。"></a>[1]: 与之相对的是表示相对时间的名词，如：明日。</h6>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="color: #00a596">日语语法</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E6%97%A5%E8%AF%AD%E5%90%8D%E8%AF%8D%E5%88%86%E7%B1%BB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E4%B8%AD%E7%9A%84%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">二分查找中的边界问题</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E7%AE%97%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>简要列举二分查找中易错的边界条件</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E7%AE%97%E6%B3%95/" style="color: #ff7d73">算法</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="color: #03a9f4">二分查找</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" style="color: #ffa2c4">边界问题</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E4%B8%AD%E7%9A%84%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91/">
+        <h2 class="post-title">操作系统之输入输出重定向</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                操作系统
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/9
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>linux命令中 &lt; 和 &gt; 的浅析</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="color: #00a596">操作系统</a>
+        </span>
+        
+    </div>
+    <a href="/blog/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/Docker-1-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">Docker-1-快速入门</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/Docker/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Docker
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>Docker原理、创建容器、创建镜像</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/Docker/" style="color: #00bcd4">Docker</a>
+        </span>
+        
+    </div>
+    <a href="/blog/Docker-1-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/%E5%8D%95%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E6%9B%B4%E6%8D%A2/">
+        <h2 class="post-title">单固态硬盘更换</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>在不重装系统的前提下更换硬盘</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/blog/%E5%8D%95%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E6%9B%B4%E6%8D%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/apache2-4%E6%97%A0%E6%8A%A5%E9%94%99%E4%BD%86%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/">
+        <h2 class="post-title">Apache服务启动失败</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>net start Apache2.4无报错，但启动失败</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/blog/apache2-4%E6%97%A0%E6%8A%A5%E9%94%99%E4%BD%86%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AF%B9%E5%90%8C%E4%B8%80%E5%BC%A0%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C/">
+        <h2 class="post-title">Mysql触发器对同一张表进行操作</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数据库
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>mysql触发器对同一张表进行操作不能使用update和insert</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/blog/tags/mysql/" style="color: #00bcd4">mysql</a>
+        </span>
+        
+    </div>
+    <a href="/blog/mysql%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AF%B9%E5%90%8C%E4%B8%80%E5%BC%A0%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/blog/Welcome/">
+        <h2 class="post-title">Welcome!</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="/blog/background.bmp" alt="图片">  </p>
+<div style="margin: 10px 25% 10px 25%; width: 50%; text-align: center">
+<h1>欢迎光临</h1>
+<p>我会时不时在这里分享一些莫名其妙的感悟，文章和笔记，希望你能在这玩得开心！(o゜▽゜)o☆，感谢你的来访！</p>
+</div>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/blog/Welcome/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>ただ在校生です。</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 一番の宝物★
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Arkueid
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/blog/js/main.js"></script>
+    
+</body>
+</html>
