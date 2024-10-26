@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Tags: 日语 | 一番の宝物★</title>
+    <title>一番の宝物★</title>
     <meta name="author" content="Arkueid" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -41,6 +41,8 @@
 
 
 
+
+<script src="/blog/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/blog/css/main.css" />
 
@@ -150,161 +152,112 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/blog/tags/Docker/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                Docker
-            </a>
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/blog/sakurasou.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>一番の宝物★</h1>
+                <h3>つまらないのは時間じゃない、つまらないのは平凡な自分だ。</h3>
+                <h5></h5>
+            </div>
         </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
         
+
+<div class="post">
+    <a href="/blog/Welcome/">
+        <h2 class="post-title">Welcome!</h2>
+    </a>
+    <div class="category-and-date">
         
-        
-        <span>
-            <a href="/blog/tags/%E7%AE%97%E6%B3%95/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                算法
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                二分查找
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                边界问题
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                操作系统
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E6%97%A5%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                日语语法
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E6%97%A5%E8%AF%AD/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                日语
-            </a>
-        </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/blog/tags/mysql/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                mysql
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E4%BA%8C%E6%AC%A1%E5%85%83/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                二次元
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/blog/tags/%E3%80%8A%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E3%80%8B/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                《蓦然回首》
-            </a>
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
         </span>
         
         
     </div>
-    
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2024/10/13</div>
-            <a href="/blog/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%8F%A5jp/">
-                <h3>每日一句（日语）</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/blog/categories/%E6%97%A5%E8%AF%AD/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        日语
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/blog/tags/%E6%97%A5%E8%AF%AD/" style="color: #00a596">
-                            日语
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><img src="/blog/background.bmp" alt="图片">  </p>
+<div style="margin: 10px 25% 10px 25%; width: 50%; text-align: center">
+<h1>欢迎光临</h1>
+<p>我会时不时在这里分享一些莫名其妙的感悟，文章和笔记，希望你能在这玩得开心！(o゜▽゜)o☆，感谢你的来访！</p>
+</div>
+
+
+            
         </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/blog/Welcome/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/blog/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/blog/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/60457155?v=4" alt="avatar" />
+        </div>
+        <div class="name">Arkueid</div>
+        <div class="description">
+            <p>ただ在校生です。</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
     </div>
     
 </div>
