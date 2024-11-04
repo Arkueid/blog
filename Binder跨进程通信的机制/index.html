@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>操作系统之输入输出重定向 | 一番の宝物★</title>
+    <title>Binder跨进程通信的机制 | 一番の宝物★</title>
     <meta name="author" content="Arkueid" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -156,22 +156,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>操作系统之输入输出重定向</h1>
+        <h1>Binder跨进程通信的机制</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/5/9
+            2024/11/4
         </span>
         
         <span class="category">
-            <a href="/blog/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            <a href="/blog/categories/Android/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                操作系统
+                Android
             </a>
         </span>
         
@@ -184,8 +184,15 @@
             
             <span class="tag">
                 
-                <a href="/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="color: #00a596">
-                    操作系统
+                <a href="/blog/tags/IBinder/" style="color: #ff7d73">
+                    IBinder
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/blog/tags/Android/" style="color: #ffa2c4">
+                    Android
                 </a>
             </span>
             
@@ -194,27 +201,13 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="打开文件描述符表"><a href="#打开文件描述符表" class="headerlink" title="打开文件描述符表"></a>打开文件描述符表</h1><p>这个表由内核维护，所有进程共享。存放的是已打开的文件的描述符。该描述符记录了文件的地址（已读取至内存中）、引用计数等信息。  </p>
-<ul>
-<li>写入文件时，先将新数据写入文件缓冲区（也就是先修改内存中的文件拷贝），再将缓冲区的内容写入到磁盘。  </li>
-<li>关闭文件时，引用计数递减，当引用计数归0时，将文件缓冲区从内存中释放，同时该描述符标记为删除。  </li>
-<li>一个系统能同时打开的文件数量是有限制的。</li>
-</ul>
-<h1 id="文件描述符表"><a href="#文件描述符表" class="headerlink" title="文件描述符表"></a>文件描述符表</h1><p>每个进程在创建之初都会初始化一个文件描述符表<code>fds[1024]</code>，这个表是一个数组，长度通常为1024。<br><code>fds</code>中的文件描述符类似于一个索引，指向的是所有进程共享的<strong>打开文件描述符表</strong>。  </p>
-<ul>
-<li>不同文件描述符可以指向同一个打开文件描述符表项。  </li>
-<li>该表的前3个文件描述符<code>fds[0]</code>、<code>fds[1]</code>、<code>fds[2]</code>在创建时被分别初始化为<code>STDIN_FILENO</code>，<code>STDOUT_FILENO</code>，<code>STDERR_FILENO</code>，即标准输入，标准输出，标准错误。<blockquote>
-<p>不严谨的解释：对STDIN_FILENO的读操作，相当于读取键盘输入；对STDOUT_FILENO的写操作，相当于将字符打印到终端；对STDERR_FILENO的读操作相当于获取错误信息。<br>Linux中一切皆文件，键盘、终端等设备通过文件的形式挂载到文件系统上，通过文件系统统一管理。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h1><p>当命令行输入一个”echo hello, yui &gt; hello.txt”的命令时，实际上经历了以下过程：</p>
-<ul>
-<li>系统打开<code>hello.txt</code>，并获得描述符</li>
-<li>运行命令行的进程调用<code>fork</code>创建子进程</li>
-<li>由于”&gt;”的存在，子进程的文件描述符fds[2]，即<code>STDOUT_FILENO</code>被修改为了文件<code>hello.txt</code>，修改过程由<code>dup2</code>函数实现</li>
-<li>子进程执行<code>echo</code>内容，“hello, yui”输出至fds[2]指向的文件。</li>
-</ul>
+        <p>Binder中的内存映射：</p>
+<p>假设客户端进程C，想要访问服务进程S的数据。</p>
+<p>由于进程隔离机制，客户端C并不能直接访问进程S的数据，可以认为进程拥有自己独立的地址空间。</p>
+<p>此时，客户端C通过一个 ServiceManager 间接获取到一个 IBinder 对象的引用。而这个 IBinder 对象实际上指向进程 S 所持有的对象 Binder。</p>
+<p>这里的内存映射：A 进程拥有的对象 IBinder，在 A 进程中的虚拟内存地址假设为 0x7777，而 S 进程拥有的 Binder 对象在 S 进程中的虚拟地址为 0xAAAAA，但实际上两者所指向的是同一块物理内存。虽然二者实际都是访问同一块物理内存，但二者拥有的权限不同。</p>
+<p>此时，S 进程收到 C 进程的数据请求，也会同样通过内存映射的方式将数据返回给 C 进程。</p>
+<p>内存映射的方式减少了实际的内存占用和复制操作的开销。</p>
 
     </div>
     
