@@ -196,6 +196,20 @@
                 </a>
             </span>
             
+            <span class="tag">
+                
+                <a href="/blog/tags/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84/" style="color: #ffa2c4">
+                    内存映射
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/blog/tags/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" style="color: #03a9f4">
+                    进程间通信
+                </a>
+            </span>
+            
         </span>
         
     </div>
@@ -203,19 +217,22 @@
     <div class="content" v-pre>
         <p>Binder 是 Android 中实现的进程间通信。在操作系统内核层面，有 Binder 驱动提供支持。</p>
 <p>Android 中存在众多系统服务（Service），分别运行在不同的进程中，而应用程序在底层通过 Binder 与这些服务进行交互。</p>
-<p>Binder 的实现可以通过从 内存映射&#x2F;共享内存 实现。</p>
-<p>假设一个应用程序 example 想查询当前的 wifi 列表，example 只需要调用 Android Framework 提供的一系列 API 进行操作，而这些操作最终会使用 Binder 作为中介。</p>
+<p>Binder 机制可以通过 <strong>共享内存</strong> 实现。</p>
+<p>每个进程可以像打开文件一样打开 Binder “设备”，而每个进程最多只能打开一个 Binder，其子线程共享该 Binder。</p>
+<p>Android 中存在一个 ServiceManager 进程，用于管理其他所有的服务，其自身也是一个服务。</p>
+<p>一个进程先获取到 ServiceManager 的 IBinder，再通过 ServiceManager 获得目标服务的 IBinder。</p>
+<p>假设一个应用程序 example 想查询当前的 wifi 列表，example 只需要调用 Android Framework 提供的一系列 API 进行操作，拿到 WifiManager 的 IBinder，最终通过 Binder 的 <code>transact</code> 函数执行对应操作。</p>
 <p>具体过程如下：</p>
 <p><code>Binder.transact(int code, Parcel data, Parcel reply, 其他参数...)</code></p>
 <p>应用程序将使用一个 <code>code</code> 来告诉服务端执行哪个操作，而 <code>data</code> 则是这个操作的参数，由应用程序写入。<code>Binder.transact</code> 可以理解为一个系统调用，此时陷入操作系统内核，执行 Binder 驱动，将操作请求转发给 Wifi 服务进程，然后挂起当前应用程序的进程，以等待 Wifi 服务进程处理完这个操作请求。当 Wifi 服务进程处理完操作，会将返回数据写入 <code>reply</code>（写入过程可以是共享内存的方式），然后唤醒应用程序的进程，应用程序从 <code>reply</code> 中取出数据。</p>
-<p>在这个过程中，需要对 <code>data</code>、<code>reply</code> 反复进行装包和解包，过程比较繁琐，因此，通常会使用 AIDL 工具自动生成对应的接口及代理。</p>
-<p>内存映射：</p>
+<p>在这个过程中，需要对 <code>data</code>、<code>reply</code> 反复进行装包和解包，过程比较繁琐，因此，通常会使用 AIDL 工具自动生成对应的接口、实现及代理。</p>
+<p>共享内存：</p>
 <p>假设客户端进程C，想要访问服务进程S的数据。</p>
 <p>由于进程隔离机制，客户端C并不能直接访问进程S的数据，可以认为进程拥有自己独立的地址空间。</p>
-<p>此时，客户端C通过一个 ServiceManager 间接获取到一个 IBinder 对象的引用。而这个 IBinder 对象实际上指向进程 S 所持有的对象 Binder。</p>
-<p>这里的内存映射：A 进程拥有的对象 IBinder，在 A 进程中的虚拟内存地址假设为 0x7777，而 S 进程拥有的 Binder 对象在 S 进程中的虚拟地址为 0xAAAAA，但实际上两者所指向的是同一块物理内存。虽然二者实际都是访问同一块物理内存，但二者拥有的权限不同。</p>
-<p>此时，S 进程收到 C 进程的数据请求，也会同样通过内存映射的方式将数据返回给 C 进程。</p>
-<p>内存映射的方式减少了实际的内存占用和复制操作的开销。</p>
+<p>此时，客户端C通过一个 ServiceManager 间接获取到一个 IBinder 对象的引用，借助 Binder 驱动申请了一段内存，将 C 进程中一部分虚拟地址映射到这段内存，同时也将 S 进程中一部分虚拟地址映射到这部分内存，此时，S 将数据写入这部分新分配的内存后，C 进程也能访问这部分内存，实现了共享内存。</p>
+<p>这里的内存映射：  </p>
+<p>C 进程拥有的对象 IBinder，在 C 进程中的虚拟内存地址假设为 0x7777，而 S 进程拥有的 Binder 对象在 S 进程中的虚拟地址为 0xAAAAA，但实际上两者所指向的是同一块物理内存。虽然二者实际都是访问同一块物理内存，但二者拥有的权限不同。</p>
+<p>内存映射的方式减少了内存数据冗余和复制操作的开销。</p>
 
     </div>
     
